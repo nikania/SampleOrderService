@@ -7,8 +7,26 @@ using System.Threading.Tasks;
 
 namespace SampleOrderService.Controllers
 {
-    public class BaseController<T> : ControllerBase where T : IService
+    public abstract class BaseController<T> : ControllerBase where T : IService
     {
+        protected T Service { get; set; }
 
+        protected BaseController(T service)
+        {
+            Service = service;
+        }
+
+        protected async Task<IActionResult> ProcessAsync(Func<Task<IActionResult>> func)
+        {
+            try
+            {
+                return await func();
+            }
+            catch(Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+
+        }
     }
 }
