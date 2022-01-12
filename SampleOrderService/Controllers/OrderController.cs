@@ -15,13 +15,13 @@ namespace SampleOrderService.Controllers
         {
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetOrders()
+        [HttpGet("{client_id}")]
+        public async Task<IActionResult> GetClientOrders(int client_id)
         {
             return await ProcessAsync(async () =>
             {
-                await Task.CompletedTask;
-                return Ok(new Order() { CreatedAt = DateTime.Now });
+                var orders = await Service.GetClientOrdersAsync(client_id);
+                return Ok(orders);
             });
         }
 
@@ -30,8 +30,8 @@ namespace SampleOrderService.Controllers
         {
             return await ProcessAsync(async () =>
             {
-                await Task.CompletedTask;
-                return Ok(new Order() { Id = id, CreatedAt = DateTime.Now });
+                var order = await Service.GetOrderAsync(id);
+                return Ok(order);
             });
         }
 
