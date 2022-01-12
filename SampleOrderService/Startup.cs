@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using SampleOrderService.Repositories.EFCore;
 using SampleOrderService.Services;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,6 +64,7 @@ namespace SampleOrderService
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSerilogRequestLogging();
             //app.UseHttpsRedirection();
 
             app.UseRouting();
