@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using SampleOrderService.Repositories;
 using SampleOrderService.Repositories.EFCore;
 using SampleOrderService.Services;
 using Serilog;
@@ -27,6 +28,7 @@ namespace SampleOrderService
             services.AddScoped<IOrderService, OrderService>();
             services.AddDbContext<OrderDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("Postgres")),
                 ServiceLifetime.Transient);
+            services.AddScoped<IOrderRepository, OrderRepository>();
 
             services.AddSwaggerGen(c =>
             {

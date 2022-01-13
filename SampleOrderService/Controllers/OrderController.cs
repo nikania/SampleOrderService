@@ -15,8 +15,8 @@ namespace SampleOrderService.Controllers
         {
         }
 
-        [HttpGet("{client_id}")]
-        public async Task<IActionResult> GetClientOrders(int client_id)
+        [HttpGet]
+        public async Task<IActionResult> GetClientOrders([FromQuery] int client_id)
         {
             return await ProcessAsync(async () =>
             {

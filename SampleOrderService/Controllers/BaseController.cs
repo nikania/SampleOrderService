@@ -24,7 +24,7 @@ namespace SampleOrderService.Controllers
             }
             catch(Exception e)
             {
-                throw new Exception(e.Message);
+                return StatusCode((int)System.Net.HttpStatusCode.InternalServerError, e.Message);
             }
 
         }
