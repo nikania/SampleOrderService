@@ -18,7 +18,7 @@ namespace SampleOrderService.Services
         public async Task<Order> GetOrderAsync(int id)
         {
             var order = await repository.GetOrderAsync(id);
-            return order ?? throw new NotFoundException();
+            return order ?? throw new OrderNotFoundException(id);
         }
 
         public async Task<IList<Order>> GetClientOrdersAsync(int client_id)

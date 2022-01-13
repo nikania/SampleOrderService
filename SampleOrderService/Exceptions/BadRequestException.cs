@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace SampleOrderService.Exceptions
 {
-    public abstract class NotFoundException : Exception
+    public abstract class BadRequestException : Exception
     {
-        protected NotFoundException(string message)
+        protected BadRequestException(string message)
             : base(message)
         {
         }
