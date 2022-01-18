@@ -1,8 +1,7 @@
-﻿using SampleOrderService.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SampleOrderService.Repositories
+namespace SampleOrderService.Model.Repositories
 {
     public interface IOrderRepository
     {

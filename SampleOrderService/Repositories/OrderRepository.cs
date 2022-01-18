@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SampleOrderService.Model;
+using SampleOrderService.Model.Repositories;
 using SampleOrderService.Repositories.EFCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
