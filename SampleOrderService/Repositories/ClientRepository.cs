@@ -54,7 +54,7 @@ namespace SampleOrderService.Repositories
             });
         }
 
-        public async Task<Client> PostClientAsync(Client client)
+        public async Task<Client> CreateClientAsync(Client client)
         {
             return await Process(async () =>
             {
@@ -65,7 +65,7 @@ namespace SampleOrderService.Repositories
             });
         }
 
-        public async Task<Client> PutClientAsync(Client client)
+        public async Task<Client> ChangeClientAsync(Client client)
         {
             return await Process(async () =>
             {

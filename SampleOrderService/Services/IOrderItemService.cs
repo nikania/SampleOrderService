@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using SampleOrderService.Model;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SampleOrderService.Model.Repositories
+namespace SampleOrderService.Services
 {
-    public interface IOrderItemRepository
+    public interface IOrderItemService : IService
     {
         Task<IList<OrderItem>> GetOrderItemsAsync(int order_id);
         Task<OrderItem> GetOrderItemAsync(int id);

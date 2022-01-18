@@ -18,21 +18,14 @@ namespace SampleOrderService.Controllers
         [HttpGet]
         public async Task<IActionResult> GetClientOrders([FromQuery] int client_id)
         {
-            return await ProcessAsync(async () =>
-            {
-                var orders = await Service.GetClientOrdersAsync(client_id);
-                return Ok(orders);
-            });
+            var orders = await Service.GetClientOrdersAsync(client_id);
+            return Ok(orders);
         }
-
         [HttpGet("{id}")]
         public async Task<IActionResult> GetOrder(int id)
         {
-            return await ProcessAsync(async () =>
-            {
-                var order = await Service.GetOrderAsync(id);
-                return Ok(order);
-            });
+            var order = await Service.GetOrderAsync(id);
+            return Ok(order);
         }
 
     }

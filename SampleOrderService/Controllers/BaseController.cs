@@ -15,18 +15,5 @@ namespace SampleOrderService.Controllers
         {
             Service = service;
         }
-
-        protected async Task<IActionResult> ProcessAsync(Func<Task<IActionResult>> func)
-        {
-            try
-            {
-                return await func();
-            }
-            catch(Exception e)
-            {
-                return StatusCode((int)System.Net.HttpStatusCode.InternalServerError, e.Message);
-            }
-
-        }
     }
 }

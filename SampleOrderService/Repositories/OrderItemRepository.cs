@@ -59,7 +59,7 @@ namespace SampleOrderService.Repositories
             });
         }
 
-        public async Task<OrderItem> PostOrderItemAsync(OrderItem item)
+        public async Task<OrderItem> CreateOrderItemAsync(OrderItem item)
         {
             return await Process(async () =>
             {
@@ -70,7 +70,7 @@ namespace SampleOrderService.Repositories
             });
         }
 
-        public async Task<OrderItem> PutOrderItemAsync(OrderItem item)
+        public async Task<OrderItem> ChangeOrderItemAsync(OrderItem item)
         {
             return await Process(async () =>
             {

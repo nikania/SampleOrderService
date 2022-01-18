@@ -7,31 +7,33 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SampleOrderService.Model;
 using SampleOrderService.Repositories.EFCore;
+using SampleOrderService.Services;
 
 namespace SampleOrderService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderItemsController : ControllerBase
+    public class OrderItemsController : BaseController<IOrderItemService>
     {
-        private readonly OrderDbContext _context;
 
-        public OrderItemsController(OrderDbContext context)
+        public OrderItemsController(IOrderItemService service) : base(service)
         {
-            _context = context;
         }
 
         // GET: api/OrderItems
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<OrderItem>>> GetOrderItems()
+        public async Task<ActionResult<IEnumerable<OrderItem>>> GetOrderItems([FromQuery] int order_id)
         {
+            var result = await Service.GetOrderItemsAsync(order_id);
+            return Ok(result);
         }
 
         // GET: api/OrderItems/5
         [HttpGet("{id}")]
         public async Task<ActionResult<OrderItem>> GetOrderItem(int id)
         {
-            
+            var result = await Service.GetOrderItemAsync(id);
+            return Ok(result);
         }
 
         // PUT: api/OrderItems/5
@@ -45,9 +47,8 @@ namespace SampleOrderService.Controllers
                 return BadRequest();
             }
 
-          
-
-            return NoContent();
+            var result = await Service.ChangeOrderItemAsync(orderItem);
+            return Ok(result);
         }
 
         // POST: api/OrderItems
@@ -57,7 +58,7 @@ namespace SampleOrderService.Controllers
         public async Task<ActionResult<OrderItem>> PostOrderItem(OrderItem orderItem)
         {
 
-
+            var result = await Service.CreateOrderItemAsync(orderItem);
             return CreatedAtAction("GetOrderItem", new { id = orderItem.Id }, orderItem);
         }
 
@@ -65,9 +66,10 @@ namespace SampleOrderService.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<OrderItem>> DeleteOrderItem(int id)
         {
-            
+            var result = await Service.DeleteOrderItemAsync(id);
+            return Ok(result);
         }
 
-      
+
     }
 }
