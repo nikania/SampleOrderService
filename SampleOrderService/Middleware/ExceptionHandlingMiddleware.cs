@@ -33,12 +33,22 @@ namespace SampleOrderService.Middleware
         {
             httpContext.Response.ContentType = "application/json";
 
-            httpContext.Response.StatusCode = exception switch
+            int status_code;
+
+            if (exception is BadRequestException)
             {
-                BadRequestException => StatusCodes.Status400BadRequest,
-                NotFoundException => StatusCodes.Status404NotFound,
-                _ => StatusCodes.Status500InternalServerError
-            };
+                status_code = StatusCodes.Status400BadRequest;
+            }
+            else if(exception is NotFoundException)
+            {
+                status_code = StatusCodes.Status404NotFound;
+            }
+            else
+            {
+                status_code = StatusCodes.Status500InternalServerError;
+            }
+            
+            httpContext.Response.StatusCode = status_code;
 
             var response = new
             {

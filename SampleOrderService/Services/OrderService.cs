@@ -1,5 +1,6 @@
 ﻿using SampleOrderService.Exceptions;
 using SampleOrderService.Model;
+using SampleOrderService.Model.Repositories;
 using SampleOrderService.Repositories;
 using System;
 using System.Collections.Generic;
